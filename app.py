@@ -1,6 +1,6 @@
 from databases import *
 import os
-from flask import Flask, request, redirect, render_template
+from flask import Flask, request, redirect, render_template, url_for
 from flask import session as login_session
 from werkzeug import secure_filename
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = 'you-will-never-guess'
 
-UPLOAD_FOLDER = '/home/student/Documents/y2s19-flask-login/static/'
+UPLOAD_FOLDER = 'static/'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
@@ -44,7 +44,12 @@ def logged_in():
         except KeyError as e:
             pass
     user = get_user(login_session['name'])
-    return render_template('logged.html', food=user.fav_food, path=user.pic_path)
+
+    try:
+    	path = str(UPLOAD_FOLDER+user.pic_path)
+    except TypeError as e:
+    	path = None
+    return render_template('logged.html', food=user.fav_food, path=path)
 
 
 @app.route('/logout')
