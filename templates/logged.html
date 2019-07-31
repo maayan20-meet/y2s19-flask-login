@@ -7,9 +7,18 @@ Hi {{session['name']}}, you are logged in.
 	Your favorite food is {{food}}
 </h2>
 
+<p>{{path}}</p>
+
+<img src="{{url_for('static', filename={{path}})}}">
+
 <form action="/logged-in" method="post">
 	<input type="text" name="food" placeholder="Enter your fav_food">
 	<input type="submit" value="submit">
+</form>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+	<input type="file" name="pic" accept="image/*">
+	<input type="submit">
 </form>
 
 <a href = "/logout"> Logout </a>

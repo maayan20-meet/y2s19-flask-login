@@ -12,6 +12,7 @@ class User(Base):
     username = Column(String)
     password_hash = Column(String)
     fav_food = Column(String)
+    pic_path = Column(String)
 
     def hash_password(self, password):
         self.password_hash = pwd_security.encrypt(password)

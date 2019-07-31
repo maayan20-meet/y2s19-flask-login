@@ -22,3 +22,7 @@ def get_user(username):
 def edit_food(username, food):
 	get_user(username).fav_food = food
 	session.commit()
+
+def edit_path(username, path):
+	get_user(username).pic_path = path
+	session.commit()

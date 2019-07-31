@@ -1,9 +1,15 @@
 from databases import *
+import os
 from flask import Flask, request, redirect, render_template
 from flask import session as login_session
+from werkzeug import secure_filename
 
 app = Flask(__name__)
+
 app.config['SECRET_KEY'] = 'you-will-never-guess'
+
+UPLOAD_FOLDER = '/home/student/Documents/y2s19-flask-login/static/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def home():
@@ -37,8 +43,8 @@ def logged_in():
             edit_food(login_session['name'], request.form['food'])
         except KeyError as e:
             pass
-    print(get_user(login_session['name']).fav_food)
-    return render_template('logged.html', food=get_user(login_session['name']).fav_food)
+    user = get_user(login_session['name'])
+    return render_template('logged.html', food=user.fav_food, path=user.pic_path)
 
 
 @app.route('/logout')
@@ -48,6 +54,12 @@ def logout():
     return home()
 
 
+@app.route('/upload', methods = ['POST'])
+def upload_pic():
+    f = request.files['pic']
+    f.save(os.path.join(app.config['UPLOAD_FOLDER'],secure_filename(f.filename)))
+    edit_path(login_session['name'], f.filename)
+    return logged_in()
 
 if __name__ == '__main__':
     app.run(debug=True)
