@@ -3,7 +3,7 @@ Login form WITH session!
 </h1>
 
 {%if session['logged_in']%}
-Hi {{session['name']}}, you are logged in.
+<p>Hi {{session['name']}}, you are logged in.</p>
 {%endif%}
 
 <form action="/login" method="POST">
