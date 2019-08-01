@@ -1,5 +1,4 @@
 from databases import *
-import os
 from flask import Flask, request, redirect, render_template, url_for
 from flask import session as login_session
 from werkzeug import secure_filename
