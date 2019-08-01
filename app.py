@@ -27,6 +27,10 @@ def login():
         return home()
 
 
+@app.route('/signUpPage')
+def sign():
+    return render_template('signup.html')
+
 @app.route('/signup', methods=['POST'])
 def signup():
     #check that username isn't already taken

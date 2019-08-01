@@ -4,16 +4,13 @@ Login form WITH session!
 
 {%if session['logged_in']%}
 <p>Hi {{session['name']}}, you are logged in.</p>
+<a href="/logged-in">Go To Youe page</a>
+{%else%}
+	<form action="/login" method="POST">
+		<input type="username" name="username" placeholder="Username">
+		<input type="password" name="password" placeholder="Password">
+		<input type="submit" value="Sign up">
+	</form>
+<a href="/signUpPage">Sign Up</a>
 {%endif%}
-
-<form action="/login" method="POST">
-  <input type="username" name="username" placeholder="Username">
-<input type="password" name="password" placeholder="Password">
-<input type="submit" value="Log in">
-</form>
-
-<form action="/signup" method="POST">
-  <input type="username" name="username" placeholder="Username">
-<input type="password" name="password" placeholder="Password">
-<input type="submit" value="Sign up">
 </form>
