@@ -2,12 +2,19 @@
 <html>
 <head>
 	<title>Sign Up Page</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
 </head>
 <body>
+	<br>
+	<br>
+	<center>
 	<form action="/signup" method="POST">
 		<input type="username" name="username" placeholder="Username">
 		<input type="password" name="password" placeholder="Password">
-		<input type="submit" value="Sign up">
+		<input class="form-submit-button" type="submit" value="Sign up">
 	</form>
+	<br>
+	<br>
+	<img src="https://cdn-img.health.com/sites/default/files/styles/small_16_9/public/1479848964/GettyImages-155781839.jpg?itok=gZxz2URC"></center>
 </body>
 </html>

@@ -1,17 +1,33 @@
-<h1>
-Login form WITH session!
-</h1>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Home Page</title>
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+	<!-- <img id="background" src="https://images.unsplash.com/photo-1432821596592-e2c18b78144f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"> -->
+	<h1 id=header>
+		Student Page!
+	</h1>
 
-{%if session['logged_in']%}
-<p>Hi {{session['name']}}, you are logged in.</p>
-<a href="/logged-in">Go To Youe page</a>
-{%else%}
+	{%if session['logged_in']%}
+		<p>Hi {{session['name']}}, you are logged in.</p>
+		<a href="/logged-in">Go To Your page</a>
+		<a href = "/logout"> Logout </a>
+	{%else%}
+
 	<form action="/login" method="POST">
 		<input type="username" name="username" placeholder="Username">
 		<input type="password" name="password" placeholder="Password">
-		<input type="submit" value="Sign up">
+		<input class="form-submit-button" type="submit" value="Log in">
 	</form>
-<a href="/signUpPage">Sign Up</a>
-{%endif%}
-<a href = "/logout"> Logout </a>
+
+	<a href="/signUpPage">Sign Up</a>
+	{%endif%}
+
+	{%for i in range(20)%}
+		<br>
+	{%endfor%}
 </form>
+</body>
+</html>
